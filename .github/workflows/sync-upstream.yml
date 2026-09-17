@@ -1,0 +1,19 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天 UTC 0 点（北京时间早上 8 点）自动同步
+  workflow_dispatch:      # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync fork
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        with:
+          upstream_sync_repo: dszz453/pansou-edge
+          upstream_sync_branch: main
+          target_sync_branch: main
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          test_mode: false
