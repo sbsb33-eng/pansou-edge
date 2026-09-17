@@ -2,14 +2,14 @@ name: Sync Upstream
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0 点（北京时间早上 8 点）自动同步
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    permissions:        # <--- 添加这一行
-    contents: write   # <--- 添加这一行（注意前面有6个空格，对齐上面）
+    permissions:
+      contents: write
     steps:
       - name: Sync fork
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
